@@ -1,4 +1,7 @@
+// Import 
 
+
+//? ALL FUNCTION
 
 const prueba = (req, res) => {
     return res.status(200).json({
@@ -8,6 +11,10 @@ const prueba = (req, res) => {
 }
 
 
+
+
+
+// Export
 module.exports = {
     prueba
 }

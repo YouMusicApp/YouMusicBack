@@ -4,13 +4,13 @@ const dotenv = require("dotenv");
 const app = require("./src/server");
 
 
-const port = process.env.PORT;
-
 // Config dotenv
 dotenv.config();
 
 // Conexion a la DB
 connection();
+
+const port = 4000;
 
 
 
