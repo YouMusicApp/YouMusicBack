@@ -1,10 +1,9 @@
-// Import 
-const Track = require("../models/tracks.model");
+const Artist = require("../models/artists.model");
 
-const getAllTracks = (req, res) => {
-    const tracks = Track.find({})
+const getAllArtists = (req, res) => {
+    const artists = Artist.find({})
 
-    tracks.exec((error, data) => {
+    artists.exec((error, data) => {
         if (error || !data) {
             return res.status(404).json({
                 status: "error",
@@ -20,11 +19,7 @@ const getAllTracks = (req, res) => {
 }
 
 
-
-
-
-
 // Export
 module.exports = {
-    getAllTracks
+    getAllArtists
 }

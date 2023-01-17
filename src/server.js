@@ -2,6 +2,8 @@ const cors = require("cors");
 const express = require("express");
 const userRouter = require("./routes/users.routes");
 const trackRouter = require("./routes/tracks.routes")
+const artistRouter = require("./routes/artists.routes")
+const playlistRouter = require("./routes/playlists.routes")
 
 // Crear servidor node
 const app = express();
@@ -16,6 +18,8 @@ app.use(express.urlencoded({ extended: true }));
 // Load all ROUTES
 app.use("/api/user", userRouter);
 app.use("/api/track", trackRouter);
+app.use("/api/artist", artistRouter);
+app.use("/api/playlist", playlistRouter);
 
 
 module.exports = app;
