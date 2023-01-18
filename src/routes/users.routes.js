@@ -12,6 +12,7 @@ router.get("/prueba", (req,res) => {
     })
 });
 
+router.get('/checkuser/:email', userController.checkUser)
 
 
 
