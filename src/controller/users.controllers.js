@@ -55,52 +55,39 @@ const createUser = (req, res) => {
         })
     } catch (error) {
         console.log(error);
-            return res.status(400).json({
-                status: "error",
-                mensaje: "No se ha guardado el post"
-            })
+        return res.status(400).json({
+            status: "error",
+            mensaje: "No se ha guardado el post"
+        })
     }
 }
 
+const editUser = (req, res) => {
+    let idUser = req.params.id;
+    let params = req.body;
 
-////////////////////////////////////////////////////////////////
+    User.findByIdAndUpdate(idUser, params, { new: true }, (error, data) => {
+        if (error || !data) {
+            return res.status(400).json({
+                status: "error",
+                response: false,
+                mensaje: "No se ha editado el usuario"
+            })
+        }
+        return res.status(200).json({
+            status: "success",
+            info: data,
+            response: true,
+            mensaje: "El usuario se ha editado correctamente"
+        })
+    })
 
-// const editPost = (req, res) => {
-//     // recogemos id
-//     let idPost = req.params.id;
-
-//     // recogemos datos body
-//     let params = req.body;
-
-//     // validamos datos
-//     try {
-//         validatePost(params);
-//     } catch (error) {
-//         return res.status(400).json({
-//             status: "error",
-//             mensaje: "Los datos no estan validados"
-//         })
-//     }
-//     // Buscamos el post y lo actualizamos
-//     Post.findOneAndUpdate({ _id: idPost }, params, { new: true }, (error, postEdited) => {
-//         if (error || !postEdited) {
-//             return res.status(400).json({
-//                 status: "error",
-//                 mensaje: "Error al editar post"
-//             })
-//         }
-//         // devolvemos respuesta
-//         return res.status(200).json({
-//             status: "success",
-//             postEdited,
-//             mensaje: "El post se ha editado correctamente"
-//         });
-//     })
-// }
+}
 
 
 // Export
 module.exports = {
     checkUser,
-    createUser
+    createUser,
+    editUser
 }

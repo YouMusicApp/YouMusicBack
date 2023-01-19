@@ -6,7 +6,7 @@ const userController = require("../controller/users.controllers")
 
 
 // Rutas de prueba
-router.get("/prueba", (req,res) => {
+router.get("/prueba", (req, res) => {
     return res.json({
         mensaje: "hola desde una prueba del back USERS"
     })
@@ -15,6 +15,9 @@ router.get("/prueba", (req,res) => {
 router.get('/checkuser/:email', userController.checkUser)
 
 router.post('/createuser', userController.createUser)
+
+router.put('/edituser/:id', userController.editUser)
+
 
 
 
