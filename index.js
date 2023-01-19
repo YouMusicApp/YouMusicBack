@@ -7,7 +7,6 @@ const port = 4000;
 
 // Config dotenv
 dotenv.config();
-
 // Conexion a la DB
 connection();
 
@@ -16,5 +15,5 @@ connection();
 
 // Escuchar peticiones
 app.listen(port, () => {
-    console.log("Estoy escuchando en el puerto " + process.env.PORT);
+    console.log("Estoy escuchando en el puerto " + process.env.SERVER_PORT);
 })
