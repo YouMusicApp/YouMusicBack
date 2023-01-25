@@ -22,37 +22,40 @@ const createAlbum = async (req, res) => {
     const { body } = req;
     try {
         const album = new Album({ ...body });
-
-        await artist.save();
-        res.json({ message: 'Successfully created artist', data: album });
+        await album.save();
+        res.json(201).json({ message: 'Successfully created album', data: album });
     } catch (error) {
-        res.status(500).json({ message: 'Error al crear el artista', error });
+        res.status(400).json({ message: error.message });
     }
 };
 
 const editAlbum = async (req, res) => {
+    const { body, params: { id } } = req;
     try {
-        const { name, tracks, thumbnail } = req.body;
-        const artist = await Artist.findById(req.params.id);
-        if (!artist) res.status(404).json({ message: 'Artista no encontrado' });
-        artist.name = name || artist.name;
-        artist.tracks = tracks || artist.tracks;
-        artist.views = views || artist.views;
-        artist.thumbnail = thumbnail || artist.thumbnail;
-        await artist.save();
-        res.json({ message: 'Artista actualizado exitosamente' });
+        const album = await Album.findByIdAndUpdate({ _id: id }, { ...body });
+        if (!artist) {
+            res.status(404).json({ message: 'Album not found' });
+        } else {
+            res.json({ message: 'Successfully updated album' });
+
+        }
     } catch (error) {
-        res.status(500).json({ message: 'Error al actualizar el artista', error });
+        res.status(400).json({ message: error.message });
     }
 };
 
 const deleteAlbum = async (req, res) => {
+    const { body, params: { id } } = req;
     try {
-        const artist = await Artist.findByIdAndRemove(req.params.id);
-        if (!artist) res.status(404).json({ message: 'Artista no encontrado' });
-        res.json({ message: 'Artista eliminado exitosamente' });
+        const album = await Album.findByIdAndRemove({ _id: id }, { ...body });
+        if (!album) {
+            res.status(404).json({ message: 'Album not found' });
+        } else {
+            res.json({ message: 'Album deleted' });
+
+        }
     } catch (error) {
-        res.status(500).json({ message: 'Error al eliminar el artista', error });
+        res.status(400).json({ message: error.message});
     }
 };
 

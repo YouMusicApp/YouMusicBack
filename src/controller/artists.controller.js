@@ -26,7 +26,7 @@ const createArtist = async (req, res) => {
         await artist.save();
         res.status(201).json({ message: 'Successfully created artist', data: artist });
     } catch (error) {
-        res.status(400).json({ mensaje: error.message });
+        res.status(400).json({ message: error.message });
     }
 };
 
@@ -41,20 +41,21 @@ const editArtist = async (req, res) => {
             res.json({ message: 'Successfully updated artist', data: artist });
         }
     } catch (error) {
-        res.status(400).json({ mensaje: error.message });
+        res.status(400).json({ message: error.message });
     }
 };
 
 const deleteArtist = async (req, res) => {
+    const { body, params: { id } } = req;
     try {
-        const artist = await Artist.findByIdAndRemove(req.params.id);
+        const artist = await Artist.findByIdAndRemove({ _id: id }, { ...body });
         if (!artist) {
             res.status(404).json({ message: 'Artist not found' })
         } else {
             res.json({ message: 'Artist deleted' });
         }
     } catch (error) {
-        res.status(400).json({ mensaje: error.message });
+        res.status(400).json({ message: error.message });
     }
 };
 
