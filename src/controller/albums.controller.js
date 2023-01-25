@@ -4,29 +4,27 @@ const getAllAlbums = (req, res) => {
     const albums = Album.find({})
 
     albums.exec((error, data) => {
-        if (error || !data) {
+        if (error || null) {
             return res.status(404).json({
                 status: "error",
-                mensaje: "Hay un error, o no se ha encontrado ningun album"
+                message: "Album not found"
             })
         }
         return res.status(200).json({
             status: "success",
             info: data,
-            mensaje: "Las caciones estan disponibles en .albums!"
+            mensaje: "The albums are available in albums"
         })
     })
 }
 
 const createAlbum = async (req, res) => {
+    const { body } = req;
     try {
-
-        const { name, genres, views, thumbnail } = req.body;
-
-        const artist = new Artist({ name, genres, views, thumbnail });
+        const album = new Album({ ...body });
 
         await artist.save();
-        res.json({ message: 'Artista creado exitosamente' });
+        res.json({ message: 'Successfully created artist', data: album });
     } catch (error) {
         res.status(500).json({ message: 'Error al crear el artista', error });
     }
