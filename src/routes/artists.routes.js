@@ -14,5 +14,9 @@ router.get("/prueba", (req, res) => {
 
 router.get("/get", artistController.getAllArtists)
 
+router.post("/post", artistController.createArtist)
+router.patch('/:id', artistController.editArtist)
+router.delete('/:id', artistController.deleteArtist)
+
 
 module.exports = router;
