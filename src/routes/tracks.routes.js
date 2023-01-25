@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 
-const trackController = require("../controller/tracks.controller")
+const { getAllTracks, uploadTrack } = require("../controller/tracks.controller")
 
 
 // Rutas de prueba
@@ -12,7 +12,9 @@ router.get("/prueba", (req, res) => {
     })
 });
 
-router.get("/get", trackController.getAllTracks)
+router.get('/', getAllTracks)
+
+router.post('/', uploadTrack);
 
 
 module.exports = router;
