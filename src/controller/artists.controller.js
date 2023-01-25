@@ -28,7 +28,7 @@ const createArtist = async (req, res) => {
         await artist.save();
         res.status(201).json({ message: 'Artista creado exitosamente', data: artist });
     } catch (error) {
-        res.status(400).json({ message: 'Error al crear el artista', error });
+        res.status(400).json({ mensaje: error.message });
     }
 };
 
