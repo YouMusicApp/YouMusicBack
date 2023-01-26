@@ -11,7 +11,7 @@ router.get("/prueba", (req, res) => {
         mensaje: "hola desde una prueba del back USERS"
     })
 });
-
+ //jwtCheck
 router.get('/checkuser/:email', userController.checkUser)
 
 router.post('/createuser', userController.createUser)

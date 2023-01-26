@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 
-const playlistController = require("../controller/playlists.controller")
+const { getAllPlaylists, createPlaylist, addTrackToPlaylist, deletePlaylist } = require("../controller/playlists.controller")
 
 
 // Rutas de prueba
@@ -12,7 +12,11 @@ router.get("/prueba", (req, res) => {
     })
 });
 
-router.get("/get", playlistController.getAllPlaylists)
+router.get("/", getAllPlaylists);
+router.post("/", createPlaylist);
+router.patch("/", addTrackToPlaylist);
+router.delete("/", deletePlaylist);
+
 
 
 module.exports = router;

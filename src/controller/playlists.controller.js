@@ -1,25 +1,105 @@
 const Playlist = require("../models/playlists.model");
 
-const getAllPlaylists = (req, res) => {
-    const playlists = Playlist.find({})
+const getAllPlaylists = async (req, res) => {
+    try {
+        const playlists = await Playlist.find({});
+        return res.status(200).json({
+            status: "success",
+            info: playlists,
+            message: "Playlists are available in .playlists!"
+        });
+    } catch (error) {
+        return res.status(404).json({
+            status: "error",
+            message: error.message
+        });
+    }
+}
 
-    playlists.exec((error, data) => {
+const createPlaylist = async (req, res) => {
+    try {
+        // recogemos los datos de la playlist
+        const { body } = req;
+
+        // Creamos el objeto playlist
+        const playlist = new Playlist({ ...body });
+
+        // guardamos la playlist en la base de datos
+        const savedPlaylist = await playlist.save();
+
+        //devolver la playlist
+        return res.status(201).json({
+            status: "success",
+            info: savedPlaylist,
+            message: "Playlist has been created"
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            status: "error",
+            message: error.message
+        });
+    }
+}
+
+const addTrackToPlaylist = async (req, res) => {
+    try {
+        // recogemos los ids de la track y de la playlist
+        const { trackId, playlistId } = req.body;
+
+        // buscamos la playlist en la base de datos
+        const playlist = await Playlist.findById(playlistId);
+
+        //validamos que la playlist exista
+        if (!playlist) {
+            return res.status(404).json({
+                status: "error",
+                message: "Playlist not found"
+            });
+        }
+
+        // añadimos la track al array de tracks de la playlist
+        playlist.tracks.push(trackId);
+
+        // guardamos los cambios en la base de datos
+        const updatedPlaylist = await playlist.save();
+
+        //devolver la playlist actualizada
+        return res.status(200).json({
+            status: "success",
+            info: updatedPlaylist,
+            message: "Track has been added to the playlist"
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            status: "error",
+            message: error.message
+        });
+    }
+}
+
+const deletePlaylist = (req, res) => {
+    const playlistId = req.params.id;
+    Track.findByIdAndDelete(playlistId, (error, data) => {
         if (error || !data) {
             return res.status(404).json({
                 status: "error",
-                mensaje: "Hay un error, o no se ha encontrado ninguna playlist"
-            })
+                message: error.message
+            });
         }
         return res.status(200).json({
             status: "success",
-            info: data,
-            mensaje: "Las caciones estan disponibles en .playlists!"
-        })
-    })
-}
+            message: "The playlist has been successfully deleted"
+        });
+    });
+};
 
 
 // Export
 module.exports = {
-    getAllPlaylists
+    getAllPlaylists,
+    createPlaylist,
+    addTrackToPlaylist,
+    deletePlaylist
 }

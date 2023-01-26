@@ -18,7 +18,7 @@ const ArtistSchema = Schema({
         type: String,
         required: true
     },
-    
+
 });
 
-module.exports = model("Artist", ArtistSchema, "artists"); 
+module.exports = model("Artist", ArtistSchema, "artists");

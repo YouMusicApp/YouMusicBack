@@ -59,6 +59,7 @@ const deleteArtist = async (req, res) => {
     }
 };
 
+
 // Export
 module.exports = {
     getAllArtists,
