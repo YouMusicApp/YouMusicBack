@@ -19,6 +19,7 @@ const getAllArtists = (req, res) => {
 }
 
 
+
 // Export
 module.exports = {
     getAllArtists

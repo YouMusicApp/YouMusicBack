@@ -18,26 +18,6 @@ const getAllTracks = async (req, res) => {
     }
 }
 
-
-
-// const getAllTracks = (req, res) => {
-//     const tracks = Track.find({})
-
-//     tracks.exec((error, data) => {
-//         if (error || !data) {
-//             return res.status(404).json({
-//                 status: "error",
-//                 mensaje: "Hay un error, o no se ha encontrado ninguna cancion"
-//             })
-//         }
-//         return res.status(200).json({
-//             status: "success",
-//             info: data,
-//             mensaje: "Las caciones estan disponibles en .tracks!"
-//         })
-//     })
-// }
-
 const uploadTrack = async (req, res) => {
     try {
         // recogemos los datos de la track
@@ -64,11 +44,29 @@ const uploadTrack = async (req, res) => {
     }
 }
 
+const deleteTrack = (req, res) => {
+    const trackId = req.params.id;
+    Track.findByIdAndDelete(trackId, (error, data) => {
+        if (error || !data) {
+            return res.status(404).json({
+                status: "error",
+                message: error.message
+            });
+        }
+        return res.status(200).json({
+            status: "success",
+            message: "The track has been successfully removed"
+        });
+    });
+};
+
+
 
 
 
 // Export
 module.exports = {
     getAllTracks,
-    uploadTrack
+    uploadTrack,
+    deleteTrack
 }
