@@ -7,14 +7,12 @@ const checkJwt = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: `${auth0.issuer}.well-known/jwks.json`
+    jwksUri: 'https://dev-712qgwanivs72bgp.us.auth0.com/.well-known/jwks.json' /* `${auth0.issuer}.well-known/jwks.json` */
   }),
 
   audience: auth0.audience,
-  issuer: auth0.issuer,
+  issuer: 'https://dev-712qgwanivs72bgp.us.auth0.com/'/* auth0.issuer */,
   algorithms: ['RS256']
 })
 
-module.exports = {
-  checkJwt
-}
+module.exports = checkJwt;

@@ -1,9 +1,8 @@
 // import
 const express = require("express");
 const router = express.Router();
-
 const userController = require("../controller/users.controllers")
-
+const { checkJwt } = require('../middlewares/check-middleware');
 
 // Rutas de prueba
 router.get("/prueba", (req, res) => {
@@ -11,12 +10,12 @@ router.get("/prueba", (req, res) => {
         mensaje: "hola desde una prueba del back USERS"
     })
 });
- //jwtCheck
+//jwtCheck
 router.get('/checkuser/:email', userController.checkUser)
 
 router.post('/createuser', userController.createUser)
 
-router.put('/edituser/:id', userController.editUser)
+router.put('/edituser/:id', checkJwt, userController.editUser)
 
 
 
