@@ -15,5 +15,5 @@ connection();
 
 // listen request
 app.listen(port, () => {
-    console.log("Estoy escuchando en el puerto " + process.env.SERVER_PORT);
+    console.log("Server running at" + process.env.PORT);
 })
