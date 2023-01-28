@@ -5,15 +5,15 @@ const trackRouter = require("./routes/tracks.routes")
 const artistRouter = require("./routes/artists.routes")
 const playlistRouter = require("./routes/playlists.routes")
 const albumRouter = require("./routes/albums.routes")
-const genreRouter = require("./routes/genres.routes")
+const genreRouter = require("./routes/genres.routes");
 
-// Crear servidor node
+
+
+
 const app = express();
 
-// Config cors
 app.use(cors());
 
-// Convertir body a obj js
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
