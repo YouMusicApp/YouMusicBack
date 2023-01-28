@@ -77,10 +77,11 @@ const createUser = async (req, res) => {
     } catch (error) {
         return res.status(400).json({
             status: "error",
-            message: "Error creating user"
+            message: error.message
         })
     }
 }
+
 
 // const createUser = (req, res) => {
 //     try {
