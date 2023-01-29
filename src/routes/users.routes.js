@@ -4,7 +4,7 @@ const router = express.Router();
 // const { checkJwt } = require("./middlewares/check-middleware");
 
 const userController = require("../controller/users.controllers")
-const { checkJwt } = require('../middlewares/check-middleware');
+//const { checkJwt } = require('../middlewares/check-middleware');
 
 // Rutas de prueba
 router.get("/prueba", (req, res) => {
@@ -17,7 +17,7 @@ router.get('/checkuser/:email', userController.checkUser)
 
 router.post('/createuser', userController.createUser)
 
-router.put('/edituser/:id', checkJwt, userController.editUser)
+router.put('/edituser/:id', userController.editUser)
 
 
 
