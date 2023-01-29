@@ -23,6 +23,7 @@
     "dotenv": "^16.0.3",
     "express": "4.18.2",
     "helmet": "6.0.1",
+    "loglevel": "^1.8.1",
     "moment": "2.29.4",
     "mongoose": "6.8.3",
     "morgan": "1.10.0",

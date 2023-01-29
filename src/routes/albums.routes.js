@@ -14,5 +14,9 @@ router.get("/prueba", (req, res) => {
 
 router.get("/get", albumController.getAllAlbums)
 
+router.post("/post", albumController.createAlbum)
+router.patch('/:id', albumController.editAlbum)
+router.delete('/:id', albumController.deleteAlbum)
+
 
 module.exports = router;

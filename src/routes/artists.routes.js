@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 
-const artistController = require("../controller/artists.controller")
+const { getAllArtists, createArtist, editArtist, deleteArtist } = require("../controller/artists.controller")
 
 
 // Rutas de prueba
@@ -12,7 +12,11 @@ router.get("/prueba", (req, res) => {
     })
 });
 
-router.get("/get", artistController.getAllArtists)
+router.get("/", getAllArtists)
+
+router.post("/", createArtist)
+router.patch('/:id', editArtist)
+router.delete('/:id', deleteArtist)
 
 
 module.exports = router;
