@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const connection = async() => {
+const connection = async () => {
     mongoose.set('strictQuery', true)
     try {
         await mongoose.connect(process.env.MONGODB_URL);

@@ -1,4 +1,4 @@
-// Import 
+// Import
 const User = require("../models/users.model");
 
 const checkUser = (req, res) => {

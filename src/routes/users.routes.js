@@ -1,10 +1,8 @@
 // import
 const express = require("express");
 const router = express.Router();
-// const { checkJwt } = require("./middlewares/check-middleware");
-
 const userController = require("../controller/users.controllers")
-
+const { checkJwt } = require('../middlewares/check-middleware');
 
 // Rutas de prueba
 router.get("/prueba", (req, res) => {
