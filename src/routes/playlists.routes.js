@@ -12,7 +12,7 @@ router.get("/prueba", (req, res) => {
     })
 });
 
-router.get("/", getAllPlaylists);
+router.get("/get", getAllPlaylists);
 router.post("/", createPlaylist);
 router.patch("/", addTrackToPlaylist);
 router.delete("/", deletePlaylist);

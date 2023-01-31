@@ -85,6 +85,21 @@ const editUser = (req, res) => {
 
 }
 
+//FORMA DE PEPE
+// const editUser = async (req, res) => {
+//     const { body, params: { id } } = req;
+//     try {
+//         const user = await User.findByIdAndUpdate({ _id: id }, { ...body });
+//         if (!user) {
+//             res.status(404).json({ message: 'User not found' });
+//         } else {
+//             res.json({ message: 'Successfully updated user' });
+//         }
+//     } catch (error) {
+//         res.status(400).json({ message: error.message });
+//     }
+// };
+
 
 // Export
 module.exports = {

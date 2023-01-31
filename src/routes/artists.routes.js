@@ -13,7 +13,7 @@ router.get("/prueba", (req, res) => {
     })
 });
 
-router.get("/", getAllArtists)
+router.get("/get", getAllArtists)
 
 router.post("/", checkJwt, createArtist)
 router.patch('/:id', editArtist)
