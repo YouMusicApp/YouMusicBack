@@ -3,7 +3,7 @@ const User = require("../models/users.model");
 
 const checkUser = (req, res) => {
     const params = req.params
-    
+
     User.find({ email: params.email }, (error, data) => {
         if (error || !data) {
             return res.status(500).json({
@@ -63,42 +63,24 @@ const createUser = (req, res) => {
     }
 }
 
-const editUser = (req, res) => {
-    let idUser = req.params.id;
-    let params = req.body;
+const editUser = async (req, res) => {
+    const id = req.params.id;
+    const body = req.body;
 
-    User.findByIdAndUpdate(idUser, params, { new: true }, (error, data) => {
-        if (error || !data) {
-            return res.status(400).json({
-                status: "error",
-                response: false,
-                mensaje: "No se ha editado el usuario"
-            })
+    try {
+        const user = await User.findByIdAndUpdate({ _id: id }, { ...body });
+        if (!user) {
+            res.status(404).json({ message: 'User not found' });
+        } else {
+            res.json({ message: 'Successfully updated user' });
         }
-        return res.status(200).json({
-            status: "success",
-            info: data,
-            response: true,
-            mensaje: "El usuario se ha editado correctamente"
-        })
-    })
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 
 }
 
-//FORMA DE PEPE
-// const editUser = async (req, res) => {
-//     const { body, params: { id } } = req;
-//     try {
-//         const user = await User.findByIdAndUpdate({ _id: id }, { ...body });
-//         if (!user) {
-//             res.status(404).json({ message: 'User not found' });
-//         } else {
-//             res.json({ message: 'Successfully updated user' });
-//         }
-//     } catch (error) {
-//         res.status(400).json({ message: error.message });
-//     }
-// };
+
 
 
 // Export
