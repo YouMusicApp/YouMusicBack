@@ -12,7 +12,7 @@ router.get("/prueba", (req, res) => {
     })
 });
 
-router.get('/', getAllTracks);
+router.get('/get', getAllTracks);
 router.post('/', uploadTrack);
 router.delete('/', deleteTrack);
 
