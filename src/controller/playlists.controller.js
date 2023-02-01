@@ -17,20 +17,17 @@ const getAllPlaylists = async (req, res) => {
 }
 
 const createPlaylist = async (req, res) => {
+
+    const { body } = req;
+    console.log(body)
+        
     try {
-        // recogemos los datos de la playlist
-        const { body } = req;
-
-        // Creamos el objeto playlist
         const playlist = new Playlist({ ...body });
+        await playlist.save();
 
-        // guardamos la playlist en la base de datos
-        const savedPlaylist = await playlist.save();
-
-        //devolver la playlist
-        return res.status(201).json({
+        res.json({
             status: "success",
-            info: savedPlaylist,
+            data: playlist,
             message: "Playlist has been created"
         });
     } catch (error) {

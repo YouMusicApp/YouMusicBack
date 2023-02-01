@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const PlaylistSchema = Schema({
     userId: {
-        type: Number,
+        type: String,
         default: 0
     },
     name: {
@@ -13,13 +13,9 @@ const PlaylistSchema = Schema({
         type: String,
         default: ""
     },
-    publicAccessible: {
-        type: Boolean,
-        default: true
-    },
     thumbnail: {
         type: String,
-        required: true
+        required: false
     },
     tracks: {
         type: Array,
