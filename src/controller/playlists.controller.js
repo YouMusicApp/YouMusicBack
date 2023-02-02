@@ -1,4 +1,94 @@
+const { db } = require("../models/playlists.model");
 const Playlist = require("../models/playlists.model");
+
+
+async function createPlaylist(req, res, next) {
+    try {
+        const _id = req.headers._id;
+console.log(_id);
+        const playlistData = {
+            userId: _id,
+            name: req.body.name,
+            description: req.body.description,
+            thumbnail: req.body.thumbnail,
+            tracks: req.body.tracks
+        }
+
+        await Playlist.create(playlistData);
+
+        if (playlistData) {
+            console.log(playlistData);
+            const playlists = await Playlist.find(
+                { userId: _id },
+                {
+                    name: 1,
+                    description: 1,
+                    thumbnail: 1,
+                    tracks: 1
+                }
+            ).lean().exec();
+
+            return res.status(201).send({
+                success: 'Playlist created',
+                data: playlists
+            });
+        } else {
+            return res
+                .status(400)
+                .send({ error: 'error' })
+        }
+
+        // const { body } = req;
+        // console.log(body);
+        // console.log(req);
+        // try {
+        // const _id = req.headers._id;
+        // console.log(_id)
+
+        // const playlistData = {
+        //     userId: _id,
+        //     name: req.body.name,
+        //     description: req.body.description,
+        //     thumbnail: req.body.thumbnail,
+        //     tracks: req.body.tracks
+        // }
+        // console.log(playlistData)
+
+        // const playlist = new Playlist({ ...body });
+        // await playlist.save();
+        // if (playlist) {
+        //     const playlists = await playlist.find(
+        //         { userId: playlist._id },
+        //         {
+        //             name: 1,
+        //             description: 1,
+        //             thumbnail: 1,
+        //             tracks: 1
+        //         }
+        //     ).exec().lean();
+        //     return res.status(201).send({
+        //         success: 'Playlist created',
+        //         data: playlists
+        //     });
+        // } else {
+        //     return res
+        //     .status (400)
+        //     .send({error: 'error'})
+        // }
+
+        // res.json({
+        //     status: "success",
+        //     data: playlist,
+        //     message: "Playlist has been created"
+        // });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            message: error.message
+        });
+        next(error);
+    }
+}
 
 const getAllPlaylists = async (req, res) => {
     try {
@@ -16,28 +106,6 @@ const getAllPlaylists = async (req, res) => {
     }
 }
 
-const createPlaylist = async (req, res) => {
-
-    const { body } = req;
-    console.log(body)
-        
-    try {
-        const playlist = new Playlist({ ...body });
-        await playlist.save();
-
-        res.json({
-            status: "success",
-            data: playlist,
-            message: "Playlist has been created"
-        });
-    } catch (error) {
-        console.log(error);
-        return res.status(400).json({
-            status: "error",
-            message: error.message
-        });
-    }
-}
 
 const addTrackToPlaylist = async (req, res) => {
     try {

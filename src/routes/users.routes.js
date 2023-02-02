@@ -16,6 +16,8 @@ router.get('/checkuser/:email', userController.checkUser)
 router.post('/createuser', userController.createUser)
 
 router.patch('/edituser/:id', userController.editUser)
+router.patch('/edituserplaylist/:id', userController.editUser)
+
 
 
 
