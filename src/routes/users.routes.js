@@ -4,19 +4,13 @@ const router = express.Router();
 const userController = require("../controller/users.controllers")
 const { checkJwt } = require('../middlewares/check-middleware');
 
-// Rutas de prueba
-router.get("/prueba", (req, res) => {
-    return res.json({
-        mensaje: "hola desde una prueba del back USERS"
-    })
-});
-//jwtCheck
+
 router.get('/checkuser/:email', userController.checkUser)
 
 router.post('/createuser', userController.createUser)
 
-router.patch('/edituser/:id', userController.editUser)
-router.patch('/edituserplaylist/:id', userController.editUser)
+router.patch('/edituser/:id', checkJwt, userController.editUser)
+router.patch('/edituserplaylist/:id', checkJwt, userController.editUser)
 
 
 

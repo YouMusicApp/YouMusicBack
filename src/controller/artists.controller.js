@@ -7,13 +7,13 @@ const getAllArtists = (req, res) => {
         if (error || null) {
             return res.status(404).json({
                 status: "error",
-                mensaje: "Artists not found"
+                message: error.message
             })
         }
         return res.status(200).json({
             status: "success",
             info: data,
-            mensaje: "The songs are available in tracks"
+            message: error.message
         })
     })
 }

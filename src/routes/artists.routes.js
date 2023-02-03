@@ -6,13 +6,6 @@ const { checkJwt } = require('../middlewares/check-middleware');
 const { getAllArtists, createArtist, editArtist, deleteArtist } = require("../controller/artists.controller")
 
 
-// Rutas de prueba
-router.get("/prueba", (req, res) => {
-    return res.json({
-        mensaje: "hola desde una prueba del back ARTISTS"
-    })
-});
-
 router.get("/get", getAllArtists)
 
 router.post("/", checkJwt, createArtist)
