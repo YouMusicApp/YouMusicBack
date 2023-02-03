@@ -7,13 +7,13 @@ const getAllGenres = (req, res) => {
         if (error || !data) {
             return res.status(404).json({
                 status: "error",
-                message: error.message
+                mensaje: "Hay un error, o no se ha encontrado ninguna genero"
             })
         }
         return res.status(200).json({
             status: "success",
             info: data,
-            message: error.message
+            mensaje: "Los generos estan disponibles en .genres!"
         })
     })
 }

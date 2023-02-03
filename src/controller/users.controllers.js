@@ -8,7 +8,7 @@ const checkUser = (req, res) => {
         if (error || !data) {
             return res.status(500).json({
                 status: "error",
-                message: error.message
+                mensaje: "Error al buscar"
             })
         }
         if (!!data.length) {
@@ -16,14 +16,14 @@ const checkUser = (req, res) => {
             return res.status(200).json({
                 status: "success",
                 info: data,
-                message: error.message
+                mensaje: "En la consola esta la lista"
             })
         } else {
             console.log('El usuario no existe en la ddbb');
             return res.status(200).json({
                 status: "success",
                 info: false,
-                message: error.message
+                mensaje: "Ese email no esta en la bbdd"
             })
         }
     })
@@ -44,21 +44,21 @@ const createUser = (req, res) => {
             if (error || !data) {
                 return res.status(400).json({
                     status: "error",
-                    message: error.message
+                    mensaje: "No se ha guardado el post"
                 })
             }
             //devolver el post
             return res.status(200).json({
                 status: "success",
                 info: data,
-                message: error.message
+                mensaje: "El post ha sido guardado"
             })
         })
     } catch (error) {
         console.log(error);
         return res.status(400).json({
             status: "error",
-            message: error.message
+            mensaje: "No se ha guardado el post"
         })
     }
 }

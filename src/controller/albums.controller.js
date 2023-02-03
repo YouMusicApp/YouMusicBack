@@ -7,13 +7,13 @@ const getAllAlbums = (req, res) => {
         if (error || null) {
             return res.status(404).json({
                 status: "error",
-                message: error.message
+                message: "Album not found"
             })
         }
         return res.status(200).json({
             status: "success",
             info: data,
-            message: error.message
+            mensaje: "The albums are available in albums"
         })
     })
 }
