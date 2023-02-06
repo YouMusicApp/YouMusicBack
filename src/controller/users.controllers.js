@@ -16,7 +16,7 @@ const checkUser = (req, res) => {
             return res.status(200).json({
                 status: "success",
                 info: data,
-                mensaje: "En la consola esta la lista pisha!!"
+                mensaje: "En la consola esta la lista"
             })
         } else {
             console.log('El usuario no existe en la ddbb');
