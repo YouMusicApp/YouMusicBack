@@ -63,7 +63,7 @@ const createUser = (req, res) => {
     }
 }
 
-const editUser = async (req, res, next) => {
+const editUser = async (req, res) => {
     const id = req.params.id;
     const body = req.body;
 
@@ -75,7 +75,7 @@ const editUser = async (req, res, next) => {
             res.json({ message: 'Successfully updated user' });
         }
     } catch (error) {
-        next(error);
+        res.status(400).json({ message: error.message });
     }
 
 }
