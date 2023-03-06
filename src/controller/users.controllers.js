@@ -63,22 +63,22 @@ const createUser = (req, res) => {
     }
 }
 
-// const editUser = async (req, res) => {
-//     const id = req.params.id;
-//     const body = req.body;
+const editUser = async (req, res, next) => {
+    const id = req.params.id;
+    const body = req.body;
 
-//     try {
-//         const user = await User.findByIdAndUpdate({ _id: id }, { ...body });
-//         if (!user) {
-//             res.status(404).json({ message: 'User not found' });
-//         } else {
-//             res.json({ message: 'Successfully updated user' });
-//         }
-//     } catch (error) {
-//         res.status(400).json({ message: error.message });
-//     }
+    try {
+        const user = await User.findByIdAndUpdate({ _id: id }, { ...body });
+        if (!user) {
+            res.status(404).json({ message: 'User not found' });
+        } else {
+            res.json({ message: 'Successfully updated user' });
+        }
+    } catch (error) {
+        next(error);
+    }
 
-// }
+}
 
 
 
@@ -87,5 +87,5 @@ const createUser = (req, res) => {
 module.exports = {
     checkUser,
     createUser,
-    // editUser
+    editUser
 }
