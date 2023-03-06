@@ -22,7 +22,7 @@ const CONFIG = {
             debug: logger.debug
         },
         db: {
-            uri: process.env.MONGODB_URL
+            url: process.env.MONGODB_URL
         },
         auth0: {
             client_origin: process.env.APP_ORIGIN,
