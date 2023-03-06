@@ -12,7 +12,7 @@ const checkJwt = jwt({
         jwksUri: `${'https://dev-712qgwanivs72bgp.us.auth0.com/'}.well-known/jwks.json`
     }),
     audience: auth0.audience,
-    issuer: auth0.issuer,
+    issuer:'https://dev-712qgwanivs72bgp.us.auth0.com/',
     algorithms: ['RS256']
    
 })
