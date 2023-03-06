@@ -9,10 +9,10 @@ const checkJwt = jwt({
         cache: true,
         rateLimit: true,
         jwksRequestsPerMinute: 5,
-        jwksUri: `${'https://dev-712qgwanivs72bgp.us.auth0.com/'}.well-known/jwks.json`
+        jwksUri: `${auth0.issuer}.well-known/jwks.json`
     }),
     audience: auth0.audience,
-    issuer:'https://dev-712qgwanivs72bgp.us.auth0.com/',
+    issuer: auth0.issuer,
     algorithms: ['RS256']
    
 })
