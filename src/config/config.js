@@ -1,7 +1,6 @@
 const dotenv = require('dotenv')
 const logger = require('loglevel')
 
-// //REPASAR, LOGGER NO INSTALADO
 
 dotenv.config()
 
@@ -22,7 +21,7 @@ const CONFIG = {
             debug: logger.debug
         },
         db: {
-            url: process.env.MONGODB_URL
+            uri: process.env.MONGODB_URL
         },
         auth0: {
             client_origin: process.env.APP_ORIGIN,

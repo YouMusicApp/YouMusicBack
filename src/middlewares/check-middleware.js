@@ -1,4 +1,4 @@
-
+const { auth0 } = require('../config/config')
 const { expressjwt: jwt } = require('express-jwt')
 const jwksRsa = require('jwks-rsa')
 
