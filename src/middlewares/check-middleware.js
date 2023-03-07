@@ -1,8 +1,8 @@
-
+const { auth0 } = require('../config/config')
 const { expressjwt: jwt } = require('express-jwt')
 const jwksRsa = require('jwks-rsa')
 
-
+console.log(auth0)
 
 const checkJwt = jwt({
     secret: jwksRsa.expressJwtSecret({
@@ -11,7 +11,7 @@ const checkJwt = jwt({
         jwksRequestsPerMinute: 5,
         jwksUri: 'https://dev-712qgwanivs72bgp.us.auth0.com/.well-known/jwks.json'
     }),
-    audience: 'https://express.sample',
+    audience: 'http://localhost:4000/',
     issuer: 'https://dev-712qgwanivs72bgp.us.auth0.com/',
     algorithms: ['RS256']
    
