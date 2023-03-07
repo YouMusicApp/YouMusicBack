@@ -96,7 +96,7 @@ const getAllPlaylists = async (req, res) => {
         return res.status(200).json({
             status: "success",
             info: playlists,
-            message: "Playlists are available in .playlists!"
+            message: "Playlists are available in playlists!"
         });
     } catch (error) {
         return res.status(404).json({
