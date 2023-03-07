@@ -9,14 +9,14 @@ const checkJwt = jwt({
         cache: true,
         rateLimit: true,
         jwksRequestsPerMinute: 5,
-        jwksUri: `${auth0.issuer}.well-known/jwks.json`
+        jwksUri: 'https://dev-712qgwanivs72bgp.us.auth0.com/.well-known/jwks.json'
     }),
-    audience: auth0.audience,
-    issuer: auth0.issuer,
+    audience: 'https://express.sample',
+    issuer: 'https://dev-712qgwanivs72bgp.us.auth0.com/',
     algorithms: ['RS256']
    
 })
-console.log(auth0.issuer)
+
 
 
 module.exports = {
